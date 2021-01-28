@@ -4,10 +4,10 @@
   "private": true,
   "scripts": {
     "start": "babel-node ./dist/app.bundle.js",
-    "dev": "cross-env NODE_APP_DB_USERNAME=1 NODE_APP_DB_PW=2 NODE_APP_DB_SERVER=3 NODE_APP_DB_DB=4 NODE_APP_CORS_URL=http://localhost:3000 nodemon --exec babel-node ./dist/app.bundle.js",
+    "dev": "cross-env NODE_APP_API_URL=https://api.appstoreconnect.apple.com/v1 NODE_APP_DB_USERNAME=1 NODE_APP_DB_PW=2 NODE_APP_DB_SERVER=3 NODE_APP_DB_DB=4 NODE_APP_CORS_URL=http://localhost:3000 nodemon --exec babel-node ./dist/app.bundle.js",
     "build:dev": "webpack-cli --config webpack.config.cjs -w --progress --color",
     "build:prod": "webpack --config webpack.config.cjs --progress --color",
-    "docker:dev": "bash ./docker-build-run.sh",
+    "docker:dev": "bash ./docker-build-run.sh supersign-api Dockerfile.dev",
     "docker:hub": "bash ./docker-build-push.sh",
     "azure": "bash ./azure-deploy.sh"
   },
@@ -24,8 +24,10 @@
     "cookie-parser": "~1.4.4",
     "cross-env": "^7.0.3",
     "express": "~4.16.1",
+    "express-xml-bodyparser": "^0.3.0",
     "http": "0.0.1-security",
     "http-errors": "~1.6.3",
+    "jsonwebtoken": "^8.5.1",
     "morgan": "~1.9.1",
     "nodemon": "^2.0.6",
     "tedious": "^11.0.1",
@@ -36,7 +38,9 @@
   "devDependencies": {
     "@types/cookie-parser": "^1.4.2",
     "@types/express": "^4.17.11",
+    "@types/express-xml-bodyparser": "^0.3.2",
     "@types/http-errors": "^1.8.0",
+    "@types/jsonwebtoken": "^8.5.0",
     "@types/morgan": "^1.9.2",
     "@types/tedious": "^4.0.3",
     "@types/ws": "^7.4.0",

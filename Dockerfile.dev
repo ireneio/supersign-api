@@ -6,12 +6,17 @@ COPY . .
 
 ENV NODE_ENV=production
 ENV NODE_APP_CORS_URL=https://questionnaire-fe.azurewebsites.net
+ENV NODE_APP_API_URL=https://api.appstoreconnect.apple.com/v1
 ENV NODE_APP_DB_USERNAME=1
 ENV NODE_APP_DB_PW=2
 ENV NODE_APP_DB_SERVER=3
 ENV NODE_APP_DB_DB=4
 
 RUN npm install --production && npm run build:prod
+
+# WORKDIR /usr/src/node-api/isign
+
+ENTRYPOINT ["/usr/src/node-api/isign/INSTALL.sh"]
 
 EXPOSE 3000
 

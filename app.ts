@@ -3,10 +3,12 @@ import createError from 'http-errors'
 import * as path from 'path'
 import cookieParser from 'cookie-parser'
 import logger from 'morgan'
+// import xmlparser from 'express-xml-bodyparser'
 
 import initAzureSqlServer from './db/index'
 
 import indexRouter from './routes/index'
+import signRouter from './routes/sign'
 
 // Connect to DB
 try {
@@ -22,6 +24,7 @@ const app: Application = express()
 app.use(logger('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
+// app.use(xmlparser())
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 
@@ -34,6 +37,7 @@ app.use(function(req: Request, res: Response, next: Function): void {
 })
 
 app.use('/', indexRouter)
+app.use('/sign', signRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req: Request, res: Response, next: Function): void {
