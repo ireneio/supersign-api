@@ -1,4 +1,4 @@
-# node-ts-es6-wp-api-template
+# ios-adhoc-signer
 
 ## Stack
 
